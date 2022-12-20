@@ -4,17 +4,36 @@
 
 
 {% block body %}
+
 <div class="container>">
-  <h1>Добавить товар</h1>
-  <form method="post">
-<input type="text" name="title" id="title" placeholder="Введите название" class="form-control"><br>
-    <input type="text" name="firm" id="firm" placeholder="Введите название фирмы" class="form-control"><br>
-    <textarea name="info" id="info" placeholder="Введите подробную информацию" class="form-control"></textarea><br>
-    <input type="number" name="price" id="price" placeholder="Введите цену" class="form-control"><br>
-     <input type="submit" class="btn btn-success" value="Отправить">
+    <h1>Добавить товар</h1>
+    <form method="post">
 
+            <div class="row">
+                <div class="col-name col-4">
+                    <lable class="ccc" for="title">Название:</lable>
+                    <input type="text" name="title" id="title" placeholder="Введите название"
+                           class="form-control form-control-sm"><br>
+                </div>
+                <div class="col-firm col-4">
+                    <lable class="ccc" for="title">Фирма:</lable>
+                    <input type="text" name="firm" id="firm" placeholder="Введите название фирмы"
+                           class="form-control form-control-sm"><br>
+                </div>
+            </div>
 
-  </form>
+            <div class="col-name col-8">
+                <lable class="ccc" for="title">Описание:</lable>
+                <textarea name="info" id="info" placeholder="Введите подробную информацию"
+                          class="form-control form-control-lg"></textarea><br>
+                <lable class="ccc" for="title">Цена:</lable>
+                <input type="number" name="price" id="price" min="0" placeholder="Введите цену"
+                       class="form-control"><br>
+            </div>
+                             <center><button type="button" class="btn btn-outline-primary btn-lg">Добавить</button>
+        <button type="button" class="btn btn-outline-danger btn-lg">Очистить</button></center>
+    </form>
+
 </div>
 
 {% endblock %}
