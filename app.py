@@ -1,16 +1,18 @@
-from flask import Flask
+from flask import Flask, request, redirect
 from flask import render_template
 from models import db, Item
-
+from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///shop.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shop.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    items = Item.query.order_by(Item.price).all()
+    return render_template('index.html', items=items)
 
 
 @app.route('/about/')
@@ -23,10 +25,29 @@ def draft():
     return render_template('draft.html')
 
 
-@app.route('/create/')
+@app.route('/create/', methods=['GET', 'POST'])
 def create():
-    return render_template('create.html')
+    if request.method == 'POST':
+        title = request.form['title']
+        firm = request.form['firm']
+        info = request.form['info']
+        price = request.form['price']
+        currency = request.form['currency']
+        # theDate = datetime.strptime(request.form['theDate'], '%Y-%m-%d')
+        # theDate = request.form.get(str('theDate'))
+        item = Item(title=title, firm=firm, info=info, price=price, currency=currency)
+        # print(theDate)
 
+        try:
+            db.session.add(item)
+            db.session.commit()
+            return redirect('/')
+
+        except:
+            return 'Произошла ошибка'
+
+    else:
+        return render_template('create.html')
 
 
 @app.route('/db')
