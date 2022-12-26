@@ -34,9 +34,9 @@ def create():
         price = request.form['price']
         currency = request.form['currency']
         # theDate = datetime.strptime(request.form['theDate'], '%Y-%m-%d')
-        # theDate = request.form.get(str('theDate'))
-        item = Item(title=title, firm=firm, info=info, price=price, currency=currency)
-        # print(theDate)
+        theDate = request.form.get('theDate')
+        item = Item(title=title, firm=firm, info=info, price=price, currency=currency, theDate=theDate)
+        print(type(theDate))
 
         try:
             db.session.add(item)

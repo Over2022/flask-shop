@@ -17,11 +17,11 @@
             <h4 class="my-0 fw-normal">{{ q.title }}</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">{{ q.price }}<small class="text-muted fw-light">{{ q.currency }}</small></h1>
+            <h1 class="col-color2 card-title pricing-card-title">{{ q.price }}<small class="text-muted fw-light">{{ q.currency }}</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
-                <li>Фирма: {{q.firm}}</li>
-                <li>Описание: {{ q.info }}</li>
-                <li>{{q.theDate}}</li>
+                <li class="col-color">Фирма: {{q.firm}}</li>
+                <li>Описание: <h3>{{ q.info }}</h3></li>
+                <li>Дата публикации:{{ q.theDate }}</li>
 
             </ul>
             <button type="button" class="w-100 btn btn-lg btn-outline-primary">Купить</button>
